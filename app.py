@@ -3,9 +3,6 @@ import json
 from react import jsx
 import youtube_dl
 
-with open('static/js/main.js', "w") as jsx_file:
-    jsx_file.write(jsx.transform('static/js/main.jsx'))
-
 app = Flask(__name__)
 ydl = youtube_dl.YoutubeDL({'outtmpl': '%(id)s%(ext)s'})
 
@@ -25,6 +22,7 @@ def get_url():
         'thumbnail': result['thumbnail']
     })
 
-#if __name__ == "__main__":
-#    app.run(debug=True)
-
+if __name__ == "__main__":
+    with open('static/js/main.js', "w") as jsx_file:
+        jsx_file.write(jsx.transform('static/js/main.jsx'))
+    app.run(debug=True)
