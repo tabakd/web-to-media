@@ -29,6 +29,25 @@ var VideoLink = React.createClass({displayName: 'VideoLink',
   }
 })
 
+var InputRotate = React.createClass({displayName: 'InputRotate',
+  getInitialState: function(){
+    return {
+      placeholders: ['youtube.com','xvideos.com']
+    }
+  },
+  switchPlaceholder: function(){
+    var p = this.state.placeholders[Math.floor(Math.random() *
+					       this.state.placeholders.length)];
+    this.setState({placeholder: p})
+  },
+  componentDidMount: function(){
+    this.interval = setInterval(this.switchPlaceholder, 5000);
+  },
+  render: function(){
+    return React.createElement("input", {type: "text", placeholder: this.state.placeholder})
+  }
+})
+
 var Main = React.createClass({displayName: 'Main',
   getInitialState: function() {
     return {}
@@ -38,8 +57,8 @@ var Main = React.createClass({displayName: 'Main',
   },
   render: function() {
     return React.createElement("div", {className: "Main"}, 
-      React.createElement("input", {ref: "url", type: "text"}), 
-      React.createElement("button", {onClick: this.handleSubmit}, "Get Link"), 
+      React.createElement("input", {type: "text", onPaste: this.handleSubmit, ref: "url"}), 
+      React.createElement("button", {onClick: this.handleSubmit}, "Download"), 
       React.createElement(VideoLink, {url: this.state.url})
       );
   }
