@@ -2,7 +2,6 @@ var VideoLink = React.createClass({
   getInitialState: function() {
     return {
       url: '',
-      style: {display:'None'}
     }
   },
   componentWillReceiveProps: function(p){
@@ -28,10 +27,11 @@ var VideoLink = React.createClass({
     }
   },
   render: function(){
-    return <div className="VideoLink">
-      <a href={this.state.url} ref="d" style={this.state.style} download>Download</a>
-      <img src={this.state.thumbnail} />
-    </div>
+    return (<div className="VideoLink">
+	    <a href={this.state.url} ref="d" download>
+            <img src={this.state.thumbnail} />
+	    </a>
+	    </div>)
   }
 })
 

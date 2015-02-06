@@ -2,7 +2,6 @@ var VideoLink = React.createClass({displayName: 'VideoLink',
   getInitialState: function() {
     return {
       url: '',
-      style: {display:'None'}
     }
   },
   componentWillReceiveProps: function(p){
@@ -11,8 +10,6 @@ var VideoLink = React.createClass({displayName: 'VideoLink',
 	this.refs.d.getDOMNode().click()	
       })
     })
-
-    console.log('s')
   },
   getUrl: function(callback) {
     var request = new XMLHttpRequest();
@@ -30,10 +27,11 @@ var VideoLink = React.createClass({displayName: 'VideoLink',
     }
   },
   render: function(){
-    return React.createElement("div", {className: "VideoLink"}, 
-      React.createElement("a", {href: this.state.url, ref: "d", style: this.state.style, download: true}, "Download"), 
-      React.createElement("img", {src: this.state.thumbnail})
-    )
+    return (React.createElement("div", {className: "VideoLink"}, 
+	    React.createElement("a", {href: this.state.url, ref: "d", download: true}, 
+            React.createElement("img", {src: this.state.thumbnail})
+	    )
+	    ))
   }
 })
 
